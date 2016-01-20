@@ -10,12 +10,17 @@ import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.stereotype.Component;
+import org.springframework.web.bind.annotation.RestController;
+
 import com.razorthink.rzt.internal.management.domain.LeaveRecords;
 import com.razorthink.rzt.internal.management.employee.service.EmployeeManagementService;
 import com.razorthink.rzt.internal.management.exception.DataException;
 import com.razorthink.rzt.internal.management.leave.service.LeaveManagementService;
 import com.razorthink.rzt.internal.management.utils.Response;
-
+@RestController
+@Path( "/leave" )
+@Component
 public class LeaveRestService {
 
 	private static final Logger log = Logger.getLogger(LeaveRestService.class);

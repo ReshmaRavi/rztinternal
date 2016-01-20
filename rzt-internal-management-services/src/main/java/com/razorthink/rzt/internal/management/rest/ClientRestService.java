@@ -1,23 +1,33 @@
 package com.razorthink.rzt.internal.management.rest;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.validation.constraints.NotNull;
+import javax.ws.rs.Consumes;
 import javax.ws.rs.GET;
-import javax.ws.rs.POST;
 import javax.ws.rs.Path;
+import javax.ws.rs.Produces;
 import javax.ws.rs.QueryParam;
+import javax.ws.rs.core.MediaType;
+
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Component;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
+
 import com.razorthink.rzt.internal.management.client.service.ClientManagementService;
 import com.razorthink.rzt.internal.management.domain.Client;
 import com.razorthink.rzt.internal.management.exception.DataException;
 import com.razorthink.rzt.internal.management.utils.Response;
 
 @RestController
-@Path( "/client" )
+@RequestMapping("/client")
 @Component
 public class ClientRestService {
 
@@ -25,11 +35,13 @@ public class ClientRestService {
 	@Autowired
 	private ClientManagementService clientManagementService;
 
-	@POST
 	@SuppressWarnings( { "unchecked", "rawtypes" } )
-	@Path( "/createOrUpdate" )
-	public ResponseEntity<Response> createOrUpdateClient( @NotNull Client ClientUI )
+	@Consumes( { MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON } )
+	@Produces( { MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON } )
+	@RequestMapping(value="/createOrUpdate" ,method=RequestMethod.POST)
+	public ResponseEntity<Response> createOrUpdateClient( @RequestBody Client ClientUI )
 	{
+		System.out.println("\nHere");
 		// check mandatory fields (validate())
 		Response response = new Response();
 		// if creating first time
@@ -37,6 +49,7 @@ public class ClientRestService {
 		{
 			try
 			{
+				System.out.println("\nClient name= "+ClientUI.getClientName());
 				clientManagementService.findByName(ClientUI.getClientName());
 				response.setErrorMessage(
 						"Client with \"" + ClientUI.getClientName() + "\" Client name already exists in the system ");
@@ -121,6 +134,28 @@ public class ClientRestService {
 		}
 		catch( DataException e )
 		{
+			response.setErrorMessage(e.getErrorMessage());
+			response.setErrorCode(e.getErrorCode());
+			response.setObject(null);
+			log.error(e.getErrorMessage());
+			return new ResponseEntity(response, HttpStatus.INTERNAL_SERVER_ERROR);
+		}
+	}
+	@SuppressWarnings({ "rawtypes", "unchecked" })
+	@GET
+	@Consumes({ MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON })
+	@Produces({ MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON })
+	@RequestMapping(value = "/getAllClients", method = RequestMethod.GET)
+	public ResponseEntity<Response> findAllClients() {
+		Response response = new Response();
+		List<Client> clients = new ArrayList<>();
+		try {
+			clients = clientManagementService.getAllClients();
+			response.setObject(clients);
+			response.setErrorCode(null);
+			response.setErrorMessage(null);
+			return new ResponseEntity(response, HttpStatus.OK);
+		} catch (DataException e) {
 			response.setErrorMessage(e.getErrorMessage());
 			response.setErrorCode(e.getErrorCode());
 			response.setObject(null);

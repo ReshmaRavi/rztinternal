@@ -1,7 +1,7 @@
 Manifest-Version: 1.0
 Implementation-Title: rzt-internal-management-services
 Implementation-Version: 0.0.1
-Built-By: reshmar
+Built-By: arun
 Implementation-Vendor-Id: com.razorthink.rzt.internal
 Build-Jdk: 1.8.0_66
 Created-By: Maven Integration for Eclipse

@@ -1,0 +1,46 @@
+<!DOCTYPE HTML>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org"
+	xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
+<head>
+<title>Project</title>
+<script type="text/javascript" src="../lib/jquery-1.11.3.min.js"></script>
+<script src="../lib/jquery-ui.js"></script>
+<script src="../js/project.js" th:src="@{../js/project.js}"></script>
+
+</head>
+<body>
+	<label>Project</label>
+	<br></br>
+	<label>Project Name</label>
+	<input id="projectName" type="text" />
+	<br></br>
+	<label>Client</label>
+	<select id="client"><option></option></select>
+	<br></br>
+	<label>Project Status</label>
+	<input id="status" type="text" />
+	<br></br>
+	<label>Repository</label>
+	<input id="repository" type="text"></input>
+	<br></br>
+	<button id="saveProject" class="Save">Save</button>
+
+	<button id="listProjects">Get Projects</button>
+
+	<div class="show-projects" id="show-projects">
+		<table id="projectTable" class="project-table" cellpadding="0"
+			cellspacing="0">
+			<!-- <tr>
+				<th >Name</th>
+				<th >Client</th>
+				<th >Status</th>
+				<th >Repository</th> 
+			</tr> -->
+		</table>
+
+
+	</div>
+
+</body>
+</html>

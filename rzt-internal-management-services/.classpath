@@ -54,7 +54,7 @@
 		</attributes>
 	</classpathentry>
 	<classpathentry kind="var" path="M2_REPO/javax/activation/activation/1.1/activation-1.1.jar" sourcepath="M2_REPO/javax/activation/activation/1.1/activation-1.1-sources.jar"/>
-	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-1.6">
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-1.7">
 		<attributes>
 			<attribute name="maven.pomderived" value="true"/>
 		</attributes>
@@ -278,7 +278,6 @@
 			<attribute name="javadoc_location" value="jar:file:/C:/Users/reshma.r/.m2/repository/org/glassfish/hk2/spring-bridge/2.4.0-b06/spring-bridge-2.4.0-b06-javadoc.jar!/"/>
 		</attributes>
 	</classpathentry>
-	<classpathentry kind="var" path="M2_REPO/com/razorthink/utils/spring-commons/0.0.1/spring-commons-0.0.1.jar"/>
 	<classpathentry kind="var" path="M2_REPO/com/zaxxer/HikariCP/2.2.5/HikariCP-2.2.5.jar"/>
 	<classpathentry kind="var" path="M2_REPO/com/razorthink/utils/common-utils/0.0.1/common-utils-0.0.1.jar"/>
 	<classpathentry kind="var" path="M2_REPO/org/apache/httpcomponents/httpclient/4.3.6/httpclient-4.3.6.jar" sourcepath="M2_REPO/org/apache/httpcomponents/httpclient/4.3.6/httpclient-4.3.6-sources.jar">

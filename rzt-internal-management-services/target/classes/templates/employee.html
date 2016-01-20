@@ -1,0 +1,79 @@
+<!DOCTYPE HTML>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org"
+	xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
+<head>
+<title>Employee</title>
+<script type="text/javascript" src="../lib/jquery-1.11.3.min.js"></script>
+<script type="text/javascript" src="../lib/jquery-ui.js"></script>
+ <script src="../lib/jquery.validate.min.js"></script>
+<script src="../lib/jquery.steps.min.js"></script>
+<link rel="stylesheet" href="../lib/jquery-steps.css"></link>
+<script src="../js/employee.js" th:src="@{../js/employee.js}"></script>
+<script>
+	$(function() {
+		$("#datepicker").datepicker();
+	});
+	$(function() {
+		$("#datepickerJoin").datepicker();
+	});
+</script>
+</head>
+<body>
+	<form id="example-advanced-form" action="#">
+	<h3>Employee Details</h3>
+	<fieldset>
+	<label>Employee Number: </label>
+	<input id="empNumber" type="text"></input>
+	<label>First Name: </label>
+	<input id="empFirstName" type="text"></input>
+	<label>Last Name: </label>
+	<input id="empLastName" type="text"></input>
+	<label for="gender">Gender: </label>
+	<input type="radio" name="genderS" value="male" checked="checked">Male</input>
+	<input type="radio" name="genderS" value="female">Female</input>
+	<label> Date of Birth: <input type="text" id="datepicker"></input>
+	</label>
+	<label> Date of Joining: <input type="text" id="datepickerJoin"></input>
+	</label>
+	<label>Designation</label>
+	<select id="designation"><option></option></select>
+	 </fieldset>
+	<h3>Address</h3>
+	<fieldset>
+	<label>Address Line1:</label>
+	<input id="addressLine1" type="text"></input>
+	<label>Address Line2:</label>
+	<input id="addressLine2" type="text"></input>
+	<label>City:</label>
+	<input id="city" type="text"></input>
+	<label>State:</label>
+	<input id="state" type="text"></input>
+	<label>Country:</label>
+	<input id="country" type="text"></input>
+	<label>Postal Code:</label>
+	<input id="postalCode" type="text"></input>
+		 </fieldset>
+	<h3>Contacts</h3>
+	<fieldset>
+	<label>Personal Email:</label>
+	<input type="text" id="personalEmail"></input>
+	<label>Office Email:</label>
+	<input type="text" id="officeEmail"></input>
+	<label>Contact Number:</label>
+	<input type="text" id="contactNumber"></input>
+	<label>Emergency Contact Number:</label>
+	<input type="text" id="emergencyContactNumber"></input>
+	<label>Skype-Id:</label>
+	<input type="text" id="skypeId"></input>
+	<label>Slack-Id:</label>
+	<input type="text" id="slackId"></input>
+	<label>Blood Group:</label>
+	<input type="text" id="bloodGroup"></input>
+	<label>Resume: </label>
+	<input type="file" id="resume"></input>
+		 </fieldset>
+	</form>
+	<button id="SaveEmp" class="Save">Save</button>
+</body>
+</html>

@@ -72,19 +72,14 @@ CREATE TABLE IF NOT EXISTS `rzt_management`.`im_employees`(
   `emp_gender` VARCHAR(10) NOT NULL,
   `emp_dob` DATE NOT NULL,
   `emp_doj` DATE NOT NULL,
-  `emp_frn_address` INT(11) NOT NULL,
   `emp_frn_designation` INT(11) NOT NULL,
   `emp_frn_contacts` INT(11) NOT NULL,
   `emp_blood_group` VARCHAR(25),
   `emp_resume` BLOB,
   `emp_is_active` TINYINT(1) NULL DEFAULT NULL,
    PRIMARY KEY (`emp_id`),
-    INDEX `fk_address_to_employee` (`emp_frn_address` ASC),
     INDEX `fk_designation_to_employee` (`emp_frn_designation` ASC),
     INDEX `fk_contacts_to_employee` (`emp_frn_contacts` ASC),
-     CONSTRAINT `fk_address_to_employee`
-    FOREIGN KEY (`emp_frn_address`)
-    REFERENCES `rzt_management`.`im_address` (`a_id`),
      CONSTRAINT `fk_designation_to_employee`
     FOREIGN KEY (`emp_frn_designation`)
     REFERENCES `rzt_management`.`im_designation` (`d_id`),
@@ -101,11 +96,10 @@ DROP TABLE IF EXISTS `rzt_management`.`im_users` ;
 CREATE TABLE IF NOT EXISTS `rzt_management`.`im_users` (
   `u_id` INT(11) NOT NULL AUTO_INCREMENT,
   `u_emp_id` INT(11) NOT NULL,
-  `u_emp_username` VARCHAR(100) NOT NULL,
-  `u_password` VARCHAR(100) NOT NULL,
+  `u_username` VARCHAR(100) NOT NULL UNIQUE,
+  `u_password` VARCHAR(250) NOT NULL,
+  `u_is_admin` TINYINT(1) NULL DEFAULT NULL,
   `u_is_active` TINYINT(1) NULL DEFAULT NULL,
-  `u_user_type` VARCHAR(50) NOT NULL,
-  UNIQUE INDEX (`u_emp_username` ASC),
   PRIMARY KEY (`u_id`),
   INDEX `fk_emp_id` (`u_emp_id` ASC),
   CONSTRAINT `fk_emp_id`
@@ -120,13 +114,8 @@ DROP TABLE IF EXISTS `rzt_management`.`im_client` ;
 CREATE TABLE IF NOT EXISTS `rzt_management`.`im_client` (
   `c_id` INT(11) NOT NULL AUTO_INCREMENT,
   `c_name` VARCHAR(100) NOT NULL,
-  `c_frn_address_id` INT(11) NULL DEFAULT NULL,
   `c_is_active` TINYINT(1) NULL DEFAULT NULL,
-  PRIMARY KEY (`c_id`),
-  INDEX `fk_client_to_address_id` (`c_frn_address_id` ASC),
-  CONSTRAINT `fk_client_to_address_id`
-    FOREIGN KEY (`c_frn_address_id`)
-    REFERENCES `rzt_management`.`im_address` (`a_id`)
+  PRIMARY KEY (`c_id`)
  );
     
 -- -----------------------------------------------------

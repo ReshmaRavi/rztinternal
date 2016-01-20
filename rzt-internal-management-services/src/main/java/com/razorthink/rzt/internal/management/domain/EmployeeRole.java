@@ -1,6 +1,7 @@
 package com.razorthink.rzt.internal.management.domain;
 
 import java.io.Serializable;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -11,7 +12,7 @@ import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 
 @Entity
-@Table( name = "im_role" )
+@Table( name = "im_roles" )
 @NamedQueries( {
 		@NamedQuery( name = "EmployeeRole.findByName", query = "From EmployeeRole r WHERE r.name=:name and r.isActive is true" ),
 		@NamedQuery(name="EmployeeRole.findAllRole", query="From EmployeeRole r WHERE r.isActive is true")})

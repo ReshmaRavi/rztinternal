@@ -1,0 +1,25 @@
+<!DOCTYPE HTML>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org"
+	xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
+<head>
+<title>Login</title>
+<script src="../lib/jquery-1.11.3.min.js"></script>
+<script src="../lib/bootstrap.min.js"></script>
+<script src="../js/login.js"></script>
+<link rel="stylesheet" href="../lib/bootstrap.min.css"></link>
+<link rel="stylesheet" href="../css/login.css"></link>
+</head>
+<body>
+	<div class="login">
+		<h2>Credentials</h2>
+		<label for="userName">User Name</label> <input type="text"
+			id="userName" name="userName" placeholder="Enter User name..."></input>
+		<label for="userPassword">Password</label> <input type="password"
+			id="userPassword" name="userPassword" placeholder="Enter Password..."></input>
+		<button id="loginButton">Login</button>
+		<button id="googleLogin">Google Login</button>
+	</div>
+	<input id="errorMessage" th:value="${Status}" type="hidden"></input>
+</body>
+</html>

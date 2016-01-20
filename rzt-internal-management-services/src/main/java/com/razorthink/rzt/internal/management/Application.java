@@ -1,52 +1,75 @@
 package com.razorthink.rzt.internal.management;
 
-import javax.sql.DataSource;
+import java.util.EnumSet;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
+import javax.servlet.DispatcherType;
+
+import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.builder.SpringApplicationBuilder;
+import org.springframework.boot.context.embedded.FilterRegistrationBean;
 import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.ComponentScan;
-import org.springframework.core.env.Environment;
+import org.springframework.context.annotation.Import;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
-import org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor;
 
+import com.razorthink.rzt.internal.management.filter.AccessPermissionFilter;
+import com.razorthink.rzt.internal.management.filter.GoogleOAuthFilter;
+import com.razorthink.rzt.internal.management.filter.LogOutFilter;
+import com.razorthink.rzt.internal.management.filter.LoginFilter;
+import com.razorthink.utils.spring.config.HikariDataSourceConfig;
 import com.razorthink.utils.spring.repo.GenericRepositoryFactoryBean;
-import com.zaxxer.hikari.HikariConfig;
-import com.zaxxer.hikari.HikariDataSource;
 
-@EnableAutoConfiguration
-@ComponentScan( "com.razorthink.rzt.internal.management.*" )
-@EnableJpaRepositories(basePackages = {
-"com.razorthink.rzt.internal.management.*" }, repositoryFactoryBeanClass = GenericRepositoryFactoryBean.class)
-public class Application {
+@SpringBootApplication
+@EnableJpaRepositories(repositoryFactoryBeanClass = GenericRepositoryFactoryBean.class )
+@Import({ HikariDataSourceConfig.class })
+public class Application{
 
-	@Autowired
-	private Environment env;
-
-	public static void main( String[] args ) throws Exception
-	{
+	public static void main(String[] args) throws Exception {
 		new SpringApplicationBuilder(Application.class).showBanner(false).run(args);
 	}
-	
-    @Bean
-    public ThreadPoolTaskExecutor getThreadPoolTaskExecutor()
-    {
-        ThreadPoolTaskExecutor executorFactoryBean = new ThreadPoolTaskExecutor();
-        executorFactoryBean.setCorePoolSize(20);
-        return executorFactoryBean;
-    }
 
 	@Bean
-	public DataSource dataSource()
+	public FilterRegistrationBean logoutFilter()
 	{
-		HikariConfig config = new HikariConfig();
-		config.setMaximumPoolSize(100);
-		config.setDataSourceClassName(env.getProperty("spring.datasource.driver-class-name"));
-		config.addDataSourceProperty("url", env.getProperty("spring.datasource.url"));
-		config.addDataSourceProperty("user", env.getProperty("spring.datasource.username"));
-		config.addDataSourceProperty("password", env.getProperty("spring.datasource.password"));
-		return new HikariDataSource(config);
+		FilterRegistrationBean registration = new FilterRegistrationBean();
+		registration.setFilter(new LogOutFilter());
+		registration.setOrder(4);
+		registration.setDispatcherTypes(EnumSet.allOf(DispatcherType.class));
+		registration.addUrlPatterns("/logout");
+		return registration;
+	}
+	
+	@Bean
+	public FilterRegistrationBean googleLoginFilter()
+	{
+		FilterRegistrationBean registration = new FilterRegistrationBean();
+		registration.setFilter(new GoogleOAuthFilter());
+		registration.setOrder(3);
+		registration.setDispatcherTypes(EnumSet.allOf(DispatcherType.class));
+		registration.addUrlPatterns("/home");
+		return registration;
+	}
+
+    @Bean
+    public FilterRegistrationBean loginFilter()
+    {
+        FilterRegistrationBean registration = new FilterRegistrationBean();
+        registration.setFilter(new LoginFilter());
+        registration.setOrder(2);
+        registration.setDispatcherTypes(EnumSet.allOf(DispatcherType.class));
+        registration.addUrlPatterns("/login");
+        return registration;
+    }
+    
+	@Bean
+	public FilterRegistrationBean accessPermissionFilter()
+	{
+		FilterRegistrationBean registration = new FilterRegistrationBean();
+		registration.setFilter(new AccessPermissionFilter());
+		registration.setDispatcherTypes(EnumSet.allOf(DispatcherType.class));
+		registration.addUrlPatterns("/*");
+		registration.setOrder(1);
+		registration.addInitParameter("excludeUrls", "/(css|js|lib|img|GoogleOAuth|home|login)/*");
+		return registration;
 	}
 
 }

@@ -3,9 +3,11 @@ package com.razorthink.rzt.internal.management.role.service.impl;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+
 import com.razorthink.rzt.internal.management.domain.EmployeeRole;
 import com.razorthink.rzt.internal.management.exception.DataException;
 import com.razorthink.rzt.internal.management.role.service.RoleManagementService;
@@ -14,13 +16,14 @@ import com.razorthink.rzt.internal.management.role.service.repo.RoleManagementRe
 @Service
 @Transactional( rollbackFor = Exception.class )
 public class RoleManagementServiceImpl implements RoleManagementService {
-	
+
 	@Autowired
 	private RoleManagementRepository roleManagementRepo;
 
 	@Override
 	public EmployeeRole createOrUpdateRole( EmployeeRole role )
 	{
+		role.setIsActive(true);
 		EmployeeRole roleEntity = roleManagementRepo.save(role);
 		if( roleEntity == null )
 			throw new DataException("data.error", "Could not save role entity");
@@ -51,12 +54,17 @@ public class RoleManagementServiceImpl implements RoleManagementService {
 	@Override
 	public EmployeeRole findByName( String name )
 	{
+		System.out.println("Inside findByName && name= "+ name);
 		Map<String, Object> params = new HashMap<String, Object>();
 		params.put("name", name);
-		EmployeeRole role = roleManagementRepo.findOneByNamedQueryAndParams("EmployeeRole.findByName", params);
-		if( role == null )
-			throw new DataException("data.error", "Could not find role entity with name: " + name);
-		return role;
+		try{
+			EmployeeRole role = roleManagementRepo.findOneByNamedQueryAndParams("EmployeeRole.findByName", params);
+			return role;
+		}
+		catch(Exception e)
+		{
+			throw new DataException("data.error", "Could not find role entity with name: " + name);	
+		}
 	}
 
 	@Override

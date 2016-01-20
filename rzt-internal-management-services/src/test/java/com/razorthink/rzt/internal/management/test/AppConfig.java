@@ -1,12 +1,6 @@
 package com.razorthink.rzt.internal.management.test;
 
-import javax.sql.DataSource;
-import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import com.razorthink.rzt.internal.management.client.service.ClientManagementService;
-import com.razorthink.rzt.internal.management.client.service.impl.ClientManagementServiceImpl;
-import com.zaxxer.hikari.HikariConfig;
-import com.zaxxer.hikari.HikariDataSource;
 
 @Configuration
 public class AppConfig {

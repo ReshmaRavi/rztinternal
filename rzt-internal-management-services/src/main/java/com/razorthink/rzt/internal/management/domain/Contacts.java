@@ -14,7 +14,7 @@ import javax.persistence.Table;
 public class Contacts implements Serializable {
 	private static final long serialVersionUID = 1L;
 	private Integer id;
-	private String personamEmail;
+	private String personalEmail;
 	private String officeEmail;
 	private String contactNumber;
 	private String emergencyContactNum;
@@ -33,12 +33,12 @@ public class Contacts implements Serializable {
 	}
 
 	@Column(name = "ec_personal_email")
-	public String getPersonamEmail() {
-		return personamEmail;
+	public String getPersonalEmail() {
+		return personalEmail;
 	}
 
-	public void setPersonamEmail(String personamEmail) {
-		this.personamEmail = personamEmail;
+	public void setPersonalEmail(String personalEmail) {
+		this.personalEmail = personalEmail;
 	}
 
 	@Column(name = "ec_office_email")

@@ -1,0 +1,111 @@
+<!DOCTYPE HTML>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org"
+	xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
+<head>
+<title>Home</title>
+
+<script src="../lib/jquery-1.11.3.min.js"></script>
+<script src="../lib/jquery-ui.js"></script>
+<script src="../lib/moderniz.2.8.1.js"></script>
+<script src="../lib/jquery.bootgrid.js"></script>
+<script src="../lib/jquery.bootgrid.fa.js"></script>
+<script src="../lib/bootstrap.min.js"></script>
+<script src="../js/admin.js"></script>
+<link rel="stylesheet" href="../lib/bootstrap.min.css"></link>
+<link rel="stylesheet" href="../lib/jquery.bootgrid.css" />
+<link rel="stylesheet" href="../css/home.css"></link>
+</head>
+<body>
+
+	<div class="main_header">
+		<p class="head">Internal Management</p>
+		<div class="dropdown" id="cont">
+			<button class="btn btn-primary dropdown-toggle" id="dropdownButton" type="button"
+				data-toggle="dropdown" th:value="${username}">
+				<span class="caret"></span>
+			</button>
+			<ul class="dropdown-menu">
+				<li id="logout"><a href="#" >Logout</a></li>
+
+			</ul>
+		</div>
+	</div>
+
+	<div class="second_header">
+
+		<ul class="nav nav-pills">
+			<li class="active"><a data-toggle="pill" href="#home">Home</a></li>
+			<li id="employee-button"><a data-toggle="pill" href="#employees">Employees</a></li>
+			<li id="project-button"><a data-toggle="pill" href="#project">Project</a></li>
+			<li><a href="#">Updates</a></li>
+		</ul>
+	</div>
+	<div class="tab-content">
+		<div id="home" class="tab-pane fade in active">
+			<div class="body_content">
+				<h2>Intro</h2>
+				<p class="intro"></p>
+			</div>
+		</div>
+		<div id="employees" class="tab-pane fade">
+		 <div class="span7">
+			<h2>Employees</h2>
+			<table id="grid"
+				class="table table-condensed table-hover table-striped"
+				data-selection="true" data-multi-select="false"
+				data-row-select="true" data-keep-selection="true">
+				<thead>
+					<tr>
+						<th data-column-id="id" data-type="numeric" data-order="asc" data-header-css-class="column" data-align="left" data-width="7%	">Sl.No</th>
+						<th data-column-id="firstName" data-order="asc" data-align="left"
+							data-header-css-class="column" data-header-align="left"
+							data-width="14%">Employee Name</th>
+						<th data-column-id="lastName" data-order="asc" data-align="left"
+							data-header-css-class="column" data-header-align="left"
+							data-width="14%">Last Name</th>
+						<th data-column-id="employeeNum" data-type="numeric"
+							data-header-css-class="column" data-align="left" data-width="10%">Employee
+							No</th>
+						<th data-column-id="commands" data-formatter="commands"
+							data-header-css-class="column" data-sortable="false" data-width="10%">Commands</th>
+					</tr>
+				</thead>
+				<tbody>
+				</tbody>
+			</table>
+			</div>
+			<div class="container"></div>
+		</div>
+		<div id="project" class="tab-pane fade">
+		<div class="span7">
+			<h2>Project</h2>
+			<table id="grid"
+				class="table table-condensed table-hover table-striped"
+				data-selection="true" data-multi-select="false"
+				data-row-select="true" data-keep-selection="true">
+				<thead>
+					<tr>
+						<th data-column-id="id" data-type="numeric" data-order="asc" data-header-css-class="column" data-align="left" data-width="7%	">Sl.No</th>
+						<th data-column-id="name" data-order="asc" data-align="left"
+							data-header-css-class="column" data-header-align="left"
+							data-width="14%">Name</th>
+						<th data-column-id="status" data-order="asc" data-align="left"
+							data-header-css-class="column" data-header-align="left"
+							data-width="14%">Status</th>
+						<th data-column-id="repository" data-order="asc" data-align="left"
+							data-header-css-class="column" data-header-align="left"
+							data-width="14%">Repository</th>
+						<th data-column-id="commands" data-formatter="commands"
+							data-header-css-class="column" data-sortable="false">Commands</th>
+					</tr>
+				</thead>
+				<tbody>
+				</tbody>
+			</table>
+			</div>
+			<div class="container"></div>
+		</div>
+	</div>
+</body>
+</html>

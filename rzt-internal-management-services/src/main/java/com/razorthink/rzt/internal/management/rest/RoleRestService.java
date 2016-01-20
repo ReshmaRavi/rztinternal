@@ -1,23 +1,28 @@
 package com.razorthink.rzt.internal.management.rest;
 
 import javax.validation.constraints.NotNull;
-import javax.ws.rs.GET;
-import javax.ws.rs.POST;
-import javax.ws.rs.Path;
+import javax.ws.rs.Consumes;
+import javax.ws.rs.Produces;
 import javax.ws.rs.QueryParam;
+import javax.ws.rs.core.MediaType;
+
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Component;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
+
 import com.razorthink.rzt.internal.management.domain.EmployeeRole;
 import com.razorthink.rzt.internal.management.exception.DataException;
 import com.razorthink.rzt.internal.management.role.service.RoleManagementService;
 import com.razorthink.rzt.internal.management.utils.Response;
 
 @RestController
-@Path( "/role" )
+@RequestMapping("/role")
 @Component
 public class RoleRestService {
 
@@ -25,10 +30,11 @@ public class RoleRestService {
 	@Autowired
 	private RoleManagementService roleManagementService;
 
-	@POST
 	@SuppressWarnings( { "unchecked", "rawtypes" } )
-	@Path( "/createOrUpdate" )
-	public ResponseEntity<Response> createOrUpdateRole( @NotNull EmployeeRole RoleUI )
+	@Consumes( { MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON } )
+	@Produces( { MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON } )
+	@RequestMapping(value="/createOrUpdate" ,method=RequestMethod.POST)
+	public ResponseEntity<Response> createOrUpdateRole(@RequestBody EmployeeRole RoleUI )
 	{
 		// check mandatory fields (validate())
 		Response response = new Response();
@@ -91,9 +97,10 @@ public class RoleRestService {
 
 	}
 
-	@GET
-	@SuppressWarnings( { "rawtypes", "unchecked" } )
-	@Path( "/removeRole" )
+	@SuppressWarnings( { "unchecked", "rawtypes" } )
+	@Consumes( { MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON } )
+	@Produces( { MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON } )
+	@RequestMapping(value="/removeRole",method=RequestMethod.GET)
 	public ResponseEntity<Response> removeRole( @NotNull( message = "Cannot be null" ) @QueryParam( "id" ) Integer id)
 	{
 		Response response = new Response();

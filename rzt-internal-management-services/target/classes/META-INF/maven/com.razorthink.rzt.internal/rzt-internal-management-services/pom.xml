@@ -7,6 +7,5 @@
   </parent>
   
   <artifactId>rzt-internal-management-services</artifactId>
-  <version>0.0.1</version>
   <name>rzt-internal-management-services</name>
 </project>

@@ -1,0 +1,33 @@
+#cont{
+	float:right;
+	margin-right: 10px;
+}
+#dropdownButton{
+	text-align:center;
+	min-width: 175px;
+}
+#dp-caret
+{
+	margin-left: 10px;
+}
+.view{
+	margin-left: 5px;
+}
+
+.edit
+{
+	margin-left: 5px;
+}
+.delete
+{
+	margin-left: 5px;
+}
+/* .caret
+{
+	float:left;
+} */
+/* .dropdown-menu
+{
+	width:100px;
+}
+ */

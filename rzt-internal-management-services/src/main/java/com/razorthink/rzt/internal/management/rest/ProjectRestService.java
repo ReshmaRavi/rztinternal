@@ -1,29 +1,44 @@
 package com.razorthink.rzt.internal.management.rest;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.validation.constraints.NotNull;
+import javax.ws.rs.Consumes;
 import javax.ws.rs.GET;
-import javax.ws.rs.POST;
 import javax.ws.rs.Path;
+import javax.ws.rs.Produces;
 import javax.ws.rs.QueryParam;
+import javax.ws.rs.core.MediaType;
+
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.stereotype.Component;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RestController;
+
 import com.razorthink.rzt.internal.management.domain.Project;
 import com.razorthink.rzt.internal.management.exception.DataException;
 import com.razorthink.rzt.internal.management.project.service.ProjectManagementService;
 import com.razorthink.rzt.internal.management.utils.Response;
-
+@RestController
+@RequestMapping( "/project" )
+@Component
 public class ProjectRestService {
 
 	private static final Logger log = Logger.getLogger(ProjectRestService.class);
 	@Autowired
 	private ProjectManagementService projectManagementService;
 
-	@POST
 	@SuppressWarnings( { "unchecked", "rawtypes" } )
-	@Path( "/createOrUpdateProject" )
-	public ResponseEntity<Response> createOrUpdateProject( @NotNull Project projectUI )
+	@Consumes( { MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON } )
+	@Produces( { MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON } )
+	@RequestMapping(value="/createOrUpdateProject" ,method=RequestMethod.POST)
+	public ResponseEntity<Response> createOrUpdateProject( @RequestBody Project projectUI )
 	{
 		// check mandatory fields (validate())
 		Response response = new Response();
@@ -115,6 +130,31 @@ public class ProjectRestService {
 		}
 		catch( DataException e )
 		{
+			response.setErrorMessage(e.getErrorMessage());
+			response.setErrorCode(e.getErrorCode());
+			response.setObject(null);
+			log.error(e.getErrorMessage());
+			return new ResponseEntity(response, HttpStatus.INTERNAL_SERVER_ERROR);
+		}
+	}
+
+	@SuppressWarnings({ "unchecked", "rawtypes" })
+	@GET
+	@Consumes( { MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON } )
+	@Produces( { MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON } )
+	@RequestMapping(value="/findAllProjects" ,method=RequestMethod.GET)
+	public ResponseEntity<Response> findAllProjects()
+	{
+		Response response = new Response();
+		List<Project> projects= new ArrayList<>();
+		try{
+			projects=projectManagementService.getAllProjects();
+			response.setObject(projects);
+			response.setErrorCode(null);
+			response.setErrorMessage(null);
+			return new ResponseEntity(response, HttpStatus.OK);
+		}
+		catch(DataException e){
 			response.setErrorMessage(e.getErrorMessage());
 			response.setErrorCode(e.getErrorCode());
 			response.setObject(null);

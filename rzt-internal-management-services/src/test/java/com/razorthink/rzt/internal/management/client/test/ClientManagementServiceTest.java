@@ -1,21 +1,10 @@
 package com.razorthink.rzt.internal.management.client.test;
 
-import java.io.Serializable;
-import javax.ws.rs.core.Application;
 import org.glassfish.jersey.test.JerseyTest;
-import org.junit.Test;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.ApplicationContext;
-import org.springframework.context.annotation.AnnotationConfigApplicationContext;
-import com.razorthink.rzt.internal.management.client.service.ClientManagementService;
-import com.razorthink.rzt.internal.management.domain.Address;
-import com.razorthink.rzt.internal.management.domain.Client;
-import com.razorthink.rzt.internal.management.test.TestConfig;
-import com.razorthink.utils.spring.repo.GenericRepository;
 
 public class ClientManagementServiceTest  extends JerseyTest{
 
-	@Autowired
+/*	@Autowired
 	private ClientManagementService clientManagementService;
 
 	@Autowired
@@ -53,5 +42,5 @@ public class ClientManagementServiceTest  extends JerseyTest{
 		setValues();
 		Client newClient = clientManagementService.createOrUpdateClient(client);
 		System.out.println(newClient);
-	}
+	}*/
 }

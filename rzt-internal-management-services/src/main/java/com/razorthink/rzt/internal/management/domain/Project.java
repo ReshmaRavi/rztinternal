@@ -15,8 +15,9 @@ import javax.persistence.Table;
 
 @Entity
 @Table( name = "im_projects" )
-@NamedQueries( {
-		@NamedQuery( name = "Project.findByName", query = "FROM Project p WHERE p.name=:projectName and p.isActive is true" ) })
+@NamedQueries({
+	@NamedQuery(name = "Project.findByName", query = "FROM Project p WHERE p.name=:projectName and p.isActive is true"),
+	@NamedQuery(name = "Project.findAllProjects", query = "FROM Project p WHERE p.isActive is true") })
 public class Project implements Serializable {
 
 	private static final long serialVersionUID = 1L;

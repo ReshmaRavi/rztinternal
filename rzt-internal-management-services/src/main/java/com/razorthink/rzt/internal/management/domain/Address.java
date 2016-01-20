@@ -21,6 +21,9 @@ public class Address implements Serializable {
 	private String country;
 	private String postalCode;
 
+	public Address() {
+	}
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	@Column(name = "a_id")

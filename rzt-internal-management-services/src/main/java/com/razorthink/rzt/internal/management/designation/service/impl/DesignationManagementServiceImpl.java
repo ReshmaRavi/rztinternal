@@ -22,6 +22,7 @@ public class DesignationManagementServiceImpl implements DesignationManagementSe
 	@Override
 	public Designation createOrUpdateDesignation( Designation designation )
 	{
+		designation.setIsActive(true);
 		Designation designationEntity = designationManagementRepo.save(designation);
 		if( designationEntity == null )
 			throw new DataException("data.error", "Could not save designation entity");
@@ -54,11 +55,15 @@ public class DesignationManagementServiceImpl implements DesignationManagementSe
 	{
 		Map<String, Object> params = new HashMap<String, Object>();
 		params.put("name", name);
+		try
+		{
 		Designation designation = designationManagementRepo.findOneByNamedQueryAndParams("Designation.findByName",
 				params);
-		if( designation == null )
-			throw new DataException("data.error", "Could not find designation entity with name: " + name);
 		return designation;
+		}catch(Exception e)
+		{
+			throw new DataException("data.error", "Could not find designation entity with name: " + name);
+		}
 	}
 
 	@Override

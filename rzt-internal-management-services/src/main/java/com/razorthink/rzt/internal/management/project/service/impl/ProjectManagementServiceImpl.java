@@ -1,10 +1,13 @@
 package com.razorthink.rzt.internal.management.project.service.impl;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+
 import com.razorthink.rzt.internal.management.domain.Project;
 import com.razorthink.rzt.internal.management.exception.DataException;
 import com.razorthink.rzt.internal.management.project.service.ProjectManagementService;
@@ -42,10 +45,13 @@ public class ProjectManagementServiceImpl implements ProjectManagementService {
 	public Project findProjectByName(String projectName) {
 		Map<String, Object> params = new HashMap<String, Object>();
 		params.put("projectName", projectName);
-		Project project = projectManagementRepo.findOneByNamedQueryAndParams("Project.findByName", params);
-		if (project == null)
+		try {
+			Project project = projectManagementRepo.findOneByNamedQueryAndParams("Project.findByName", params);
+			return project;
+		} catch (Exception e) {
 			throw new DataException("data.error", "Could not find project entity with name : " + projectName);
-		return project;
+		}
+
 	}
 
 	@Override
@@ -54,5 +60,10 @@ public class ProjectManagementServiceImpl implements ProjectManagementService {
 		if (project == null)
 			throw new DataException("data.error", "Could not find project entity with id :" + id);
 		return project;
+	}
+
+	@Override
+	public List<Project> getAllProjects() {
+		return projectManagementRepo.findByNamedQuery("Project.findAllProjects");
 	}
 }

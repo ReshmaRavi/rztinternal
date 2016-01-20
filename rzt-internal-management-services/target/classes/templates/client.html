@@ -1,0 +1,66 @@
+<!DOCTYPE HTML>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org"
+	xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
+<head>
+<title>Client</title>
+<script src="../lib/jquery-1.11.3.min.js"></script>
+<script src="../lib/bootstrap.min.js"></script>
+<script src="../js/client.js"></script>
+<link rel="stylesheet" href="../css/bootstrap.min.css"></link>
+<link rel="stylesheet" href="../css/client.css"></link>
+</head>
+<body>
+
+	<div class="register-container container">
+		<div class="row">
+			<div class="register ">
+				<form action="" method="post" id="form">
+					<h2>Enter Client Details</h2>
+					<label for="clientName">Client Name</label> <input type="text"
+						id="clientName" name="clientName"
+						placeholder="Enter Client name..."></input> <label
+						for="addressLine1">Address Line 1</label> <input type="text"
+						id="addressLine1" name="addressLine1"
+						placeholder="Enter Address Line 1..."></input> <label
+						for="addressLine2">Address Line 2</label> <input type="text"
+						id="addressLine2" name="addressLine2"
+						placeholder="Enter Address Line 2..."></input> <label for="city">City</label>
+					<input type="text" id="city" name="city"
+						placeholder="Enter City name..."></input> <label for="state">State</label>
+					<input type="text" id="state" name="state"
+						placeholder="Enter State name..."></input> <label for="country">Country</label>
+					<input type="text" id="country" name="country"
+						placeholder="Enter Country Name..."></input> <label
+						for="postalCode">Postal Code</label> <input type="text"
+						id="postalCode" name="postalCode"
+						placeholder="Enter Postal Code..."></input> <input id="AddImg" type="image"
+						src="../img/add.png" alt="Add" width="12" height="12"></input>
+					<div id="SecondAddress">
+					<label
+						for="addressLine1">Address Line 1</label> <input type="text"
+						id="addressLine1" name="addressLine1"
+						placeholder="Enter Address Line 1..."></input> <label
+						for="addressLine2">Address Line 2</label> <input type="text"
+						id="addressLine2" name="addressLine2"
+						placeholder="Enter Address Line 2..."></input> <label for="city">City</label>
+					<input type="text" id="city" name="city"
+						placeholder="Enter City name..."></input> <label for="state">State</label>
+					<input type="text" id="state" name="state"
+						placeholder="Enter State name..."></input> <label for="country">Country</label>
+					<input type="text" id="country" name="country"
+						placeholder="Enter Country Name..."></input> <label
+						for="postalCode">Postal Code</label> <input type="text"
+						id="postalCode" name="postalCode"
+						placeholder="Enter Postal Code..."></input> <input id="RemoveImg" type="image"
+						src="../img/remove.png" alt="Remove"></input>
+					</div>
+					<button id="submit" type="submit">Save</button>
+				</form>
+				
+			</div>
+		</div>
+	</div>
+
+</body>
+</html>

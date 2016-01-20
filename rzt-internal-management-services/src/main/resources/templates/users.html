@@ -1,0 +1,27 @@
+<!DOCTYPE HTML>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org"
+	xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
+<head>
+<title>Client</title>
+<script src="../lib/jquery-1.11.3.min.js"></script>
+<script src="../lib/bootstrap.min.js"></script>
+<script src="../js/users.js"></script>
+<link rel="stylesheet" href="../lib/bootstrap.min.css"></link>
+<link rel="stylesheet" href="../css/users.css"></link>
+</head>
+<body>
+	<form id="form">
+		<h2>Enter User Details</h2>
+		<label for="userId">Employee Id</label> <input type="text" id="userId"
+			name="userId" placeholder="Enter Employee Id..."></input> 
+			<label for="username">User Name</label> <input type="text" id="username"
+			name="username" placeholder="Enter username..."></input>
+			<label for="password">Password</label> <input type="password"
+			id="password" name="password" placeholder="Enter Password..."></input>
+		<label for="isAdmin">Is Admin</label> <input type="checkbox"
+			id="isAdmin" name="isAdmin" value="1"></input>
+		<button id="saveUser">Save</button>
+	</form>
+</body>
+</html>
