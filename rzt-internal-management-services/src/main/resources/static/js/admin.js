@@ -1,5 +1,5 @@
 $(document).ready(function() {
-	
+ 	
 	$('[data-toggle="tooltip"]').tooltip(); 
 	$("#logout").on("click", function() {
 		$
@@ -45,18 +45,18 @@ var grid = $("#grid").bootgrid({
         {
             return "<input type=\"image\" src=\"../img/view.png\" data-toggle=\"tooltip\" data-placement=\"top\" title=\"View\" class=\"view\" width=\"20\" height=\"20\" id=\""+ row.id +"\" data-row-id=\"" + row.id + "\"></input> " + 
             "<input type=\"image\" src=\"../img/edit.png\" data-toggle=\"tooltip\" data-placement=\"top\" title=\"Edit\" class=\"edit\" width=\"20\" height=\"20\" id=\""+ row.id +"\" data-row-id=\"" + row.id + "\"></input> " + 
-            "<input type=\"image\" src=\"../img/bin.png\" data-toggle=\"tooltip\" data-placement=\"top\" title=\"Delete\" class=\"delete\" width=\"20\" height=\"20\" id=\""+ row.id +"\" data-row-id=\"" + row.id + "\"></input> ";
+            "<input type=\"image\" src=\"../img/bin.png\" data-toggle=\"tooltip\" data-placement=\"top\" title=\"Delete\" class=\"delete\" id=\"delete\" width=\"20\" height=\"20\" id=\""+ row.id +"\" data-row-id=\"" + row.id + "\"></input> ";
             
         }
     }
 }).on("loaded.rs.jquery.bootgrid", function()
-		{
+		{// $("#delete").confirm();
     grid.find(".view").on("click", function(e)
     {
     	alert("Clicked");
     	window.location.replace("/employee");
     	$("#divdeps").dialog('open');
-    }).end().find(".btn-danger").on("click", function(e)
+    }).end().find(".edit").on("click", function(e)
     {
 
     	var userData="&id="+iden;
@@ -112,6 +112,76 @@ var grid = $("#grid").bootgrid({
 					  
 			    
 			});
+    }).end().find(".delete").on("click", function(e,rows)
+    {
+    	e.preventDefault();
+    	   var empnum=$(this).closest('tr').find('td:eq(3)').text();
+    	    $.confirm({
+    	        text: "Are you sure to delete the Employee??! Please confirm:",
+    	        confirm: function(button) {
+    	         
+    	        	$
+    	    		.ajax({
+    	    			headers : {
+    	    				'Accept' : 'application/json',
+    	    				'Content-Type' : 'application/json'
+    	    			},
+    	    			type : "GET",
+    	    			url : "/employee/removeEmployeeByNumber?empNum="+empnum,
+    	            }) .done(function ( response ) {
+    	    				  if(response.errorMessage==null)
+    	    					  {modal({
+    	    							type: 'info',
+    	    							title: 'Deletion Success!!!',
+    	    							text: 'Employee has been deleted Successfully!',
+    	    							autoclose: false,
+    	    							callback:function(argument){
+    	    								$
+    	    								.ajax({
+    	    									headers : {
+    	    										'Accept' : 'application/json',
+    	    										'Content-Type' : 'application/json'
+    	    									},
+    	    									type : "GET",
+    	    									url : "/employee/findAllEmployeesMin",
+    	    								}).done(function(jsonResponse){
+    	    									$("#grid").bootgrid("clear");
+    	    									$("#grid").bootgrid().bootgrid("append", jsonResponse);
+    	    								});
+    	    							},
+    	    						});}
+    	    				  else
+    	    					  {
+    	    					  
+    	    						modal({
+    	    							type: 'error',
+    	    							title: 'Error',
+    	    							text: 'Error deleting employee!',
+    	    							callback:function(argument){
+    	    								$
+    	    								.ajax({
+    	    									headers : {
+    	    										'Accept' : 'application/json',
+    	    										'Content-Type' : 'application/json'
+    	    									},
+    	    									type : "GET",
+    	    									url : "/employee/findAllEmployeesMin",
+    	    								}).done(function(jsonResponse){
+    	    									$("#grid").bootgrid("clear");
+    	    									$("#grid").bootgrid().bootgrid("append", jsonResponse);
+    	    								});
+    	    							},
+    	    						});
+    	    						
+    	    					  }
+    	    					  
+    	    			    
+    	    			});
+    	        },
+    	        cancel: function(button) {
+    	        }
+    	});
+    	
     });
 });
 $("#project-button").on("click", function() {

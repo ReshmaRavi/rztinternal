@@ -11,9 +11,11 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.razorthink.rzt.internal.management.domain.Employee;
 import com.razorthink.rzt.internal.management.domain.TinyEmployee;
+import com.razorthink.rzt.internal.management.domain.Users;
 import com.razorthink.rzt.internal.management.employee.service.EmployeeManagementService;
 import com.razorthink.rzt.internal.management.employee.service.repo.EmployeeManagementRepository;
 import com.razorthink.rzt.internal.management.exception.DataException;
+import com.razorthink.rzt.internal.management.user.service.UserManagementService;
 import com.razorthink.rzt.internal.management.utils.GenericRepo;
 
 @Service
@@ -21,6 +23,9 @@ import com.razorthink.rzt.internal.management.utils.GenericRepo;
 public class EmployeeManagementServiceImpl implements EmployeeManagementService {
 	@Autowired
 	private EmployeeManagementRepository empRepo;
+	
+	@Autowired
+	UserManagementService userManagementService;
 	
 	@Autowired
 	private GenericRepo genericRepo;
@@ -50,6 +55,35 @@ public class EmployeeManagementServiceImpl implements EmployeeManagementService 
 		return true;
 	}
 
+	@Override
+	public Boolean removeEmployeeByNumber(String empNum ) {
+		
+		Map<String, Object> params = new HashMap<String, Object>();
+		params.put("empNum", empNum);
+		try {
+			Employee employee = empRepo.findOneByNamedQueryAndParams("Employee.findByEmpNum", params);
+			employee.setIsActive(false);
+			Employee emp = empRepo.save(employee);
+			System.out.println("\nemp=="+emp);
+			try{
+				System.out.println("emp id=="+emp.getId());
+			Users user=userManagementService.findByEmployeeId(emp.getId()) ;
+			System.out.println("\nuser=="+user);
+			user.setIsActive(false);
+			userManagementService.removeUser(user.getId());
+			}
+			catch(Exception e){
+				e.printStackTrace();
+			}
+			if (emp == null)
+				return false;
+			return true;
+		} catch (Exception e) {
+			e.printStackTrace();
+			throw new DataException("data.error", "Entity not found for employee num " + empNum);
+		}
+	}
+	
 	@Override
 	public Employee findByEmployeeNumber(String empNum) {
 		Map<String, Object> params = new HashMap<String, Object>();

@@ -89,14 +89,16 @@ public class EmployeeRestService {
 		}
 
 	}
-
-	@GET
+	
 	@SuppressWarnings({ "rawtypes", "unchecked" })
-	@Path("/removeEmployee")
-	public ResponseEntity<Response> removeEmployee(@NotNull(message = "Cannot be null") @QueryParam("id") Integer id) {
+	@Consumes({ MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON })
+	@Produces({ MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON })
+	@RequestMapping(value = "/removeEmployeeByNumber", method = RequestMethod.GET)
+	public ResponseEntity<Response> removeEmployeeByNumber(@NotNull(message = "Cannot be null") @QueryParam("empNum") String empNum) {
 		Response response = new Response();
+		System.out.println("\nEmployee Number=="+empNum);
 		try {
-			Boolean status = employeeManagementService.removeEmployee(id);
+			Boolean status = employeeManagementService.removeEmployeeByNumber(empNum);
 			if (status) {
 				response.setObject(null);
 				response.setErrorCode(null);
@@ -118,7 +120,6 @@ public class EmployeeRestService {
 		}
 	}
 	@SuppressWarnings({ "unchecked", "rawtypes" })
-	@GET
 	@Consumes({ MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON })
 	@Produces({ MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON })
 	@RequestMapping(value = "/findAllEmployees", method = RequestMethod.GET)

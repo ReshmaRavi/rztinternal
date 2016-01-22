@@ -19,4 +19,6 @@ public interface EmployeeManagementService {
 
 	public List<TinyEmployee> getAllEmployeesMin();
 
+	public Boolean removeEmployeeByNumber(String empNum);
+
 }
