@@ -68,7 +68,7 @@ public class Application{
 		registration.setDispatcherTypes(EnumSet.allOf(DispatcherType.class));
 		registration.addUrlPatterns("/*");
 		registration.setOrder(1);
-		registration.addInitParameter("excludeUrls", "/(css|js|lib|img|GoogleOAuth|home|login)/*");
+		registration.addInitParameter("excludeUrls", "/(css|js|lib|img|fonts|GoogleOAuth|home|login)/*");
 		return registration;
 	}
 

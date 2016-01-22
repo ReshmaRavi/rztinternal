@@ -1,5 +1,4 @@
 $(document).ready(function() {
- 	
 	$('[data-toggle="tooltip"]').tooltip(); 
 	$("#logout").on("click", function() {
 		$

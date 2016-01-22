@@ -1,6 +1,9 @@
 $(document)
 		.ready(
 				function() {
+					$(function() {
+						$("#datepicker").datetimepicker();
+					});
 					var designationList = [];
 					$
 							.ajax({

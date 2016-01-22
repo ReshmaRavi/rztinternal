@@ -43,6 +43,13 @@ public class HomeController {
 		return "userhome";
 	}
 
+	
+	@RequestMapping(value = "/header")
+	public String header() {
+		System.out.println("inside home controller userhome");
+		return "header";
+	}
+	
 	@RequestMapping(value = "/errorLogin")
 	public ModelAndView errorLogin(@RequestParam String Status) {
 		ModelAndView mv = new ModelAndView("index");
@@ -62,9 +69,9 @@ public class HomeController {
 		return "project";
 	}
 
-	@RequestMapping(value = "/employee")
+	@RequestMapping(value = "/employees")
 	public String employee() {
-		return "employee";
+		return "employees";
 	}
 
 	@RequestMapping(value = "/designation")
