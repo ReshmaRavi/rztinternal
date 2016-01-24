@@ -4,6 +4,7 @@
 package com.razorthink.rzt.internal.management.filter;
 
 import java.io.IOException;
+
 import javax.servlet.Filter;
 import javax.servlet.FilterChain;
 import javax.servlet.FilterConfig;
@@ -12,18 +13,18 @@ import javax.servlet.ServletRequest;
 import javax.servlet.ServletResponse;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
 import org.apache.log4j.Logger;
 import org.springframework.web.context.WebApplicationContext;
 import org.springframework.web.context.support.WebApplicationContextUtils;
+
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.razorthink.rzt.internal.management.domain.Employee;
 import com.razorthink.rzt.internal.management.domain.Users;
 import com.razorthink.rzt.internal.management.employee.service.EmployeeManagementService;
-import com.razorthink.rzt.internal.management.exception.DataException;
 import com.razorthink.rzt.internal.management.user.service.UserManagementService;
 import com.razorthink.rzt.internal.management.utils.MD5Utils;
 import com.razorthink.rzt.internal.management.utils.StringUtils;
-import com.razorthink.utils.aes.AesEncryption;
 
 public class LoginFilter implements Filter {
 
