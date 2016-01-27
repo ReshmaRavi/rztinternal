@@ -3,8 +3,6 @@
  */
 package com.razorthink.rzt.internal.management.controller;
 
-import javax.servlet.http.HttpServletRequest;
-
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -20,12 +18,8 @@ public class HomeController {
 	}
 	
 	@RequestMapping(value = "/admin")
-	public ModelAndView admin(@RequestParam String name) {
-		System.out.println("controller name=="+name);
-		ModelAndView mv = new ModelAndView("adminhome");
-		mv.addObject("username",name);
-		System.out.println("controller after name=="+name);
-		return mv;
+	public String admin() {
+		return "adminhome";
 	}
 	
 	@RequestMapping(value = "/noSession")

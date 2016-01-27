@@ -1,5 +1,5 @@
-.dropdown active{
-	background-color: #c52d2f;
+.navbar .container {
+    width: auto;
 }
 .navbar-brand {
   padding: 0;
@@ -106,7 +106,17 @@
   padding-bottom: 0;
 }
 
+.navbar-brand
+{
+	margin-left: 3px!important;
+}
+
 #header-container
 {
 	margin-right: 3%;
 }
+#user
+{
+	min-width: 150px;
+}
+

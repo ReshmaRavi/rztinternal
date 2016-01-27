@@ -17,6 +17,7 @@ import org.springframework.web.context.support.WebApplicationContextUtils;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.google.api.client.auth.oauth2.Credential;
+import com.razorthink.rzt.internal.management.domain.LoggedUser;
 import com.razorthink.rzt.internal.management.domain.Users;
 import com.razorthink.rzt.internal.management.user.service.UserManagementService;
 import com.razorthink.utils.goauth.GoogleAuthException;
@@ -52,8 +53,9 @@ public class GoogleOAuthFilter implements Filter {
 					request.getSession(true).setAttribute("loginUserInfo", googleUserInfo.getName());
 					request.getSession(true).setAttribute("loginUserEmail", googleUserInfo.getEmail());
 					String name=googleUserInfo.getName();
+					LoggedUser.setUsername(name);
 					if(user.getIsAdmin()){
-						response.sendRedirect("/admin?name="+name);
+						response.sendRedirect("/admin");
 						return;
 					}
 					response.sendRedirect("/userHome");

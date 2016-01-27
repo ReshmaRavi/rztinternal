@@ -21,6 +21,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.razorthink.rzt.internal.management.domain.AggregateUsers;
 import com.razorthink.rzt.internal.management.domain.Employee;
+import com.razorthink.rzt.internal.management.domain.LoggedUser;
 import com.razorthink.rzt.internal.management.domain.Users;
 import com.razorthink.rzt.internal.management.employee.service.EmployeeManagementService;
 import com.razorthink.rzt.internal.management.exception.DataException;
@@ -133,5 +134,12 @@ public class UserRestService {
 	    }catch(Exception e){
 		return null;
 	    }
+	}
+	
+	@Consumes( { MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON } )
+	@Produces( { MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON } )
+	@RequestMapping(value="/findUserName" ,method=RequestMethod.GET)
+	public String getUserName(){
+		return LoggedUser.getUsername();
 	}
 }

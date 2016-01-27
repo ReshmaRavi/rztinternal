@@ -76,6 +76,34 @@
 			</div>
 		</div>
 	</div>
+	<div class="modal fade" id="editModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+		<div class="modal-dialog" role="document">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+					<h4 class="modal-title" id="myModalLabel">Edit User</h4>
+				</div>
+				<div class="modal-body">
+					<div class="register" id="form">
+						<form id="myForm">
+							<h2>Enter User Details</h2>
+							<label for="empId">Employee Id</label> <input  disabled="disabled" id="empId-edit" name="empId-edit" placeholder="Enter Employee Id..."></input> <label for="username">User
+								Name</label> <input type="text" id="username-edit" name="username-edit" placeholder="Enter username..."></input> 
+								<label for="isAdmin">Is Admin</label>
+								 <input type="checkbox"
+								id="isAdmin-edit" name="isAdmin-edit" class="checkbox checkbox-primary" value="0"></input>
+						</form>
+					</div>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+					<button type="button" class="btn btn-success" id="saveUser">Add User</button>
+				</div>
+			</div>
+		</div>
+	</div>
 	<script src="../lib/jquery-ui.js"></script>
 	<script src="../lib/jquery.confirm.min.js"></script>
 	<script src="../lib/jquery.modal.min.js"></script>

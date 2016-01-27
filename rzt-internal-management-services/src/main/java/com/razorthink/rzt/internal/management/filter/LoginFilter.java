@@ -20,6 +20,7 @@ import org.springframework.web.context.support.WebApplicationContextUtils;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.razorthink.rzt.internal.management.domain.Employee;
+import com.razorthink.rzt.internal.management.domain.LoggedUser;
 import com.razorthink.rzt.internal.management.domain.Users;
 import com.razorthink.rzt.internal.management.employee.service.EmployeeManagementService;
 import com.razorthink.rzt.internal.management.user.service.UserManagementService;
@@ -68,10 +69,11 @@ public class LoginFilter implements Filter {
 			request.getSession(true).setAttribute("loginUserInfo",user.getUsername());
 			request.getSession(true).setAttribute("loginUserEmail", emp.getContactDetails().getOfficeEmail());
 			String name=user.getUsername();
+			LoggedUser.setUsername(name);
 			response.setContentType("text/plain");
 			response.setCharacterEncoding("UTF-8");
 			if(user.getIsAdmin()){
-			response.getWriter().write("/admin?name="+name);
+			response.getWriter().write("/admin");
 			return;
 			}
 			response.getWriter().write("/userHome");

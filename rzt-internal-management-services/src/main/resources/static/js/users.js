@@ -79,17 +79,17 @@ $(document).ready(function() {
 	    	var username=$(this).closest('tr').find('td:eq(1)').text();
 	    	var empId=$(this).closest('tr').find('td:eq(2)').text();
 	    	var isAdmin=$(this).closest('tr').find('td:eq(5)').text();
-	    	$("#username").val(username);
-	    	$("#empId").val(empId);
+	    	$("#username-edit").val(username);
+	    	$("#empId-edit").val(empId);
 	    	if(isAdmin=="true")	
 	    	{
-	    		$("#isAdmin").prop( "checked", true );
+	    		$("#isAdmin-edit").prop( "checked", true );
 	    	}
 	    	else
 	    	{
-	    		$("#isAdmin").prop( "checked", false );
+	    		$("#isAdmin-edit").prop( "checked", false );
 	    	}
-	    	$('#myModal').modal('show'); 
+	    	$('#editModal').modal('show'); 
 	    	var userData="&id="+iden;
 	        $.ajax({
 	        	

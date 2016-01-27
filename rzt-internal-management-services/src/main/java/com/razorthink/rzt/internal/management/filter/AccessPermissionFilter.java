@@ -19,6 +19,7 @@ import javax.servlet.http.HttpSession;
 import org.springframework.web.context.WebApplicationContext;
 import org.springframework.web.context.support.WebApplicationContextUtils;
 
+import com.razorthink.rzt.internal.management.domain.LoggedUser;
 import com.razorthink.rzt.internal.management.domain.Users;
 import com.razorthink.rzt.internal.management.user.service.UserManagementService;
 
@@ -70,7 +71,8 @@ public class AccessPermissionFilter implements Filter {
 			this.response.setDateHeader("Expires", 0); // Proxies.
 			Users user = userManagementService.findByEmailId((String) this.request.getSession().getAttribute("loginUserEmail"));
 			if (user.getIsAdmin()) {
-				this.response.sendRedirect("/admin?name=" + attribute);
+				LoggedUser.setUsername(attribute);
+				this.response.sendRedirect("/admin");
 				return;
 			}
 			this.response.sendRedirect("/userHome");
