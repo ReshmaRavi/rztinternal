@@ -2,7 +2,7 @@ $(document)
 		.ready(
 				function() {
 					$(function() {
-						$("#datepicker").datetimepicker();
+						$("#datepicker").datepicker();
 					});
 					var designationList = [];
 					$

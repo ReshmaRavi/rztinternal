@@ -1,4 +1,5 @@
 $(document).ready(function() {
+	window.name = "home";
 	$('[data-toggle="tooltip"]').tooltip(); 
 	$("#logout").on("click", function() {
 		$

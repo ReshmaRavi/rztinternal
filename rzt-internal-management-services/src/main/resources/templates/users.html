@@ -1,33 +1,23 @@
 <!DOCTYPE HTML>
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
 <head>
-<title>Users</title>
-<meta name="viewport" content="width=device-width, initial-scale=1.0"></meta>
-<script src="../lib/jquery-1.11.3.min.js"></script>
-<script src="../lib/jquery-ui.js"></script>
-<script src="../lib/jquery.confirm.min.js"></script>
-<script src="../lib/jquery.modal.min.js"></script>
-<script src="../lib/moderniz.2.8.1.js"></script>
-<script src="../lib/jquery.bootgrid.js"></script>
-<script src="../lib/jquery.bootgrid.fa.js"></script>
-<script src="../lib/bootstrap.min.js"></script>
-<script src="../lib/jquery.validate.min.js"></script>
-<script src="../js/users.js"></script>
-<link rel="stylesheet" href="../lib/bootstrap.min.css"></link>
-<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css"></link>
-<link rel="stylesheet" href="../lib/jquery.bootgrid.css"></link>
-<link rel="stylesheet" href="../lib/jquery.modal.css"></link>
-<link rel="stylesheet" href="../lib/font-awesome.min.css"></link>
-<link rel="stylesheet" href="../lib/animate.min.css"></link>
-<link rel="stylesheet" href="../lib/prettyPhoto.css"></link>
-<link rel="stylesheet" href="../lib/responsive.css"></link>
-<link rel="stylesheet" href="../css/header.css"></link>
-<link rel="stylesheet" href="../css/users.css"></link>
-<script>
-	$(function() {
-		$("#header").load("/header");
-	});
-</script>
+	<title>Users</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0"></meta>
+	<script src="../lib/jquery-1.11.3.min.js"></script>
+	<link rel="stylesheet" href="../lib/bootstrap.min.css"></link>
+	<link rel="stylesheet" href="../lib/font-awesome-4.5.0/css/font-awesome.css"></link>
+	<link rel="stylesheet" href="../lib/jquery.bootgrid.css"></link>
+	<link rel="stylesheet" href="../lib/jquery.modal.css"></link>
+	<link rel="stylesheet" href="../lib/animate.min.css"></link>
+	<link rel="stylesheet" href="../lib/prettyPhoto.css"></link>
+	<link rel="stylesheet" href="../lib/responsive.css"></link>
+	<link rel="stylesheet" href="../css/header.css"></link>
+	<link rel="stylesheet" href="../css/users.css"></link>
+	<script> 
+   	 	$(function(){
+     		 $("#header").load("/header"); 
+    	});
+    </script> 
 </head>
 <body>
 	<div id="header"></div>
@@ -68,16 +58,14 @@
 				</div>
 				<div class="modal-body">
 					<div class="register" id="form">
-						<form>
+						<form id="myForm">
 							<h2>Enter User Details</h2>
-							<label for="userId">Employee Id</label> <input type="text" id="userId" name="userId" placeholder="Enter Employee Id..."></input> <label for="username">User
+							<label for="empId">Employee Id</label> <input type="text" id="empId" name="empId" placeholder="Enter Employee Id..."></input> <label for="username">User
 								Name</label> <input type="text" id="username" name="username" placeholder="Enter username..."></input> <label for="password">Password</label> <input
 								type="password" id="password" name="password" placeholder="Enter Password..."></input> 
 								<label for="isAdmin">Is Admin</label>
-								<div class="checkbox checkbox-success"><input name="isAdmin" id="isAdmin" type="checkbox" value="1"></input>
-								</div>
-								<!--  <input type="checkbox"
-								id="isAdmin" name="isAdmin" class="checkbox checkbox-primary" value="1"></input> -->
+								 <input type="checkbox"
+								id="isAdmin" name="isAdmin" class="checkbox checkbox-primary" value="0"></input>
 						</form>
 					</div>
 				</div>
@@ -88,5 +76,15 @@
 			</div>
 		</div>
 	</div>
+	<script src="../lib/jquery-ui.js"></script>
+	<script src="../lib/jquery.confirm.min.js"></script>
+	<script src="../lib/jquery.modal.min.js"></script>
+	<script src="../lib/moderniz.2.8.1.js"></script>
+	<script src="../lib/jquery.bootgrid.js"></script>
+	<script src="../lib/jquery.bootgrid.fa.js"></script>
+	<script src="../lib/bootstrap.min.js"></script>
+	<script src="../lib/jquery.validate.min.js"></script>
+	<script src="../js/header.js"></script>
+	<script src="../js/users.js"></script>
 </body>
 </html>

@@ -8,7 +8,6 @@ $(document).ready(function() {
 		type : "GET",
 		url : "/users/findAllUsers",
 	}).done(function(jsonResponse){
-		console.log(jsonResponse);
 		for(var i=0;i<jsonResponse.length;i++){
 			jsonResponse[i].id=i+1;
 		}
@@ -16,8 +15,10 @@ $(document).ready(function() {
 		$("#grid").bootgrid().bootgrid("append", jsonResponse);
 	});
 	
-	
 	$("#addButton").on("click", function() {
+		  $("#myForm").find('input:text, input:password, input:file, select, textarea').val('');
+		    $("#myForm").find('input:radio, input:checkbox')
+		         .removeAttr('checked').removeAttr('selected');
 		$('#myModal').modal('show'); 
 	});
 			
@@ -75,6 +76,20 @@ $(document).ready(function() {
 	    }).end().find(".edit").on("click", function(e)
 	    {
 
+	    	var username=$(this).closest('tr').find('td:eq(1)').text();
+	    	var empId=$(this).closest('tr').find('td:eq(2)').text();
+	    	var isAdmin=$(this).closest('tr').find('td:eq(5)').text();
+	    	$("#username").val(username);
+	    	$("#empId").val(empId);
+	    	if(isAdmin=="true")	
+	    	{
+	    		$("#isAdmin").prop( "checked", true );
+	    	}
+	    	else
+	    	{
+	    		$("#isAdmin").prop( "checked", false );
+	    	}
+	    	$('#myModal').modal('show'); 
 	    	var userData="&id="+iden;
 	        $.ajax({
 	        	

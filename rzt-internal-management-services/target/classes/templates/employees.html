@@ -6,38 +6,24 @@
 <title>Employee</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0"></meta>
 <script src="../lib/jquery-1.11.3.min.js"></script>
-<script src="../lib/jquery-ui.js"></script>
-<script src="../lib/jquery.confirm.min.js"></script>
-<script src="../lib/jquery.modal.min.js"></script>
-<script src="../lib/moderniz.2.8.1.js"></script>
-<script src="../lib/jquery.bootgrid.js"></script>
-<script src="../lib/jquery.bootgrid.fa.js"></script>
-<script src="../lib/bootstrap.min.js"></script>
-<script src="../js/admin.js"></script>
-<link rel="stylesheet" href="../lib/bootstrap.min.css"></link>
 <link rel="stylesheet" href="../lib/jquery.bootgrid.css"></link>
 <link rel="stylesheet" href="../lib/jquery.modal.css"></link>
-<link rel="stylesheet" href="../css/home.css"></link>
+<link rel="stylesheet" href="../lib/jquery-steps.css"></link>
+<link rel="stylesheet" href="../lib/bootstrap.min.css"></link>
 <link rel="stylesheet" href="../lib/font-awesome.min.css"></link>
 <link rel="stylesheet" href="../lib/animate.min.css"></link>
-<link rel="stylesheet" href="../lib/prettyPhoto.css"></link>
-<link rel="stylesheet" href="../css/header.css"></link>
-<link rel="stylesheet" href="../lib/responsive.css"></link
-
-<script src="../lib/jquery.validate.min.js"></script>
-<script src="../lib/jquery.steps.min.js"></script>
-<link rel="stylesheet" href="../lib/jquery-steps.css"></link>
-<script src="../js/employee.js" th:src="@{../js/employee.js}"></script>
-<script src="../lib/bootstrap.min.js"></script>
+<link rel="stylesheet" href="../lib/responsive.css"></link>
 <link rel="stylesheet" href="../lib/bootstrap.min.css"></link>
 <link rel="stylesheet" href="../css/header.css"></link>
+<link rel="stylesheet" href="../css/home.css"></link>
+<link rel="stylesheet" href="../css/employee.css"></link>
 <script>
-	/* $(function() {
-		$("#datepicker").datetimepicker();
+	$(function() {
+		$("#datepicker").datepicker();
 	});
 	$(function() {
 		$("#datepickerJoin").datepicker();
-	}); */
+	}); 
 	 $(function(){
     		 $("#header").load("/header"); 
    	});
@@ -45,6 +31,7 @@
 </head>
 <body>
   	<div id="header"></div>
+  	<div id="formDiv">
 	<form id="example-advanced-form" action="#">
 	<h3>Employee Details</h3>
 	<fieldset>
@@ -55,6 +42,12 @@
 	<label>Last Name: </label>
 	<input id="empLastName" type="text"></input>
 	<label for="gender">Gender: </label>
+	<div class="btn-group">
+		<button class="multiselect dropdown-toggle btn btn-default" data-toggle="dropdown" type="button" title="Male" aria-expanded="false">
+		Male
+		<b class="caret"></b>
+	</button>
+	</div>
 	<input type="radio" name="genderS" value="male" checked="checked">Male</input>
 	<input type="radio" name="genderS" value="female">Female</input>
 	<label> Date of Birth: <input type='text' class="form-control" id='datepicker' />
@@ -100,5 +93,17 @@
 		 </fieldset>
 	</form>
 	<button id="SaveEmp" class="Save">Save</button>
+	</div>
+	<script src="../lib/jquery-ui.js"></script>
+	<script src="../lib/jquery.confirm.min.js"></script>
+	<script src="../lib/jquery.modal.min.js"></script>
+	<script src="../lib/moderniz.2.8.1.js"></script>
+	<script src="../lib/jquery.bootgrid.js"></script>
+	<script src="../lib/jquery.bootgrid.fa.js"></script>
+	<script src="../lib/bootstrap.min.js"></script>
+	<script src="../lib/jquery.validate.min.js"></script>
+	<script src="../lib/jquery.steps.min.js"></script>
+	<script src="../js/header.js"></script>
+	<script src="../js/employee.js"></script>
 </body>
 </html>

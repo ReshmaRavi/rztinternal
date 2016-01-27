@@ -1,4 +1,5 @@
 $(document).ready(function() {
+	window.name = "home";
 	$('[data-toggle="tooltip"]').tooltip(); 
 	$("#logout").on("click", function() {
 		$
@@ -30,6 +31,9 @@ $("#employee-button").on("click", function() {
 							type : "GET",
 							url : "/employee/findAllEmployeesMin",
 						}).done(function(jsonResponse){
+							for(var i=0;i<jsonResponse.length;i++){
+								jsonResponse[i].id=i+1;
+							}
 							$("#grid").bootgrid("clear");
 							$("#grid").bootgrid().bootgrid("append", jsonResponse);
 						});

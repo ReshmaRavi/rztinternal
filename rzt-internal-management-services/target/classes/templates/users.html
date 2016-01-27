@@ -1,27 +1,90 @@
 <!DOCTYPE HTML>
-<html xmlns="http://www.w3.org/1999/xhtml"
-	xmlns:th="http://www.thymeleaf.org"
-	xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
 <head>
-<title>Client</title>
-<script src="../lib/jquery-1.11.3.min.js"></script>
-<script src="../lib/bootstrap.min.js"></script>
-<script src="../js/users.js"></script>
-<link rel="stylesheet" href="../lib/bootstrap.min.css"></link>
-<link rel="stylesheet" href="../css/users.css"></link>
+	<title>Users</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0"></meta>
+	<script src="../lib/jquery-1.11.3.min.js"></script>
+	<link rel="stylesheet" href="../lib/bootstrap.min.css"></link>
+	<link rel="stylesheet" href="../lib/font-awesome-4.5.0/css/font-awesome.css"></link>
+	<link rel="stylesheet" href="../lib/jquery.bootgrid.css"></link>
+	<link rel="stylesheet" href="../lib/jquery.modal.css"></link>
+	<link rel="stylesheet" href="../lib/animate.min.css"></link>
+	<link rel="stylesheet" href="../lib/prettyPhoto.css"></link>
+	<link rel="stylesheet" href="../lib/responsive.css"></link>
+	<link rel="stylesheet" href="../css/header.css"></link>
+	<link rel="stylesheet" href="../css/users.css"></link>
+	<script> 
+   	 	$(function(){
+     		 $("#header").load("/header"); 
+    	});
+    </script> 
 </head>
 <body>
-	<form id="form">
-		<h2>Enter User Details</h2>
-		<label for="userId">Employee Id</label> <input type="text" id="userId"
-			name="userId" placeholder="Enter Employee Id..."></input> 
-			<label for="username">User Name</label> <input type="text" id="username"
-			name="username" placeholder="Enter username..."></input>
-			<label for="password">Password</label> <input type="password"
-			id="password" name="password" placeholder="Enter Password..."></input>
-		<label for="isAdmin">Is Admin</label> <input type="checkbox"
-			id="isAdmin" name="isAdmin" value="1"></input>
-		<button id="saveUser">Save</button>
-	</form>
+	<div id="header"></div>
+	<div class="span7">
+		<h2>
+			Users
+			<div id="button">
+				<a data-target="myModal" data-toggle="modal" id="addButton" href="#" class="btn btn-primary btn-success"><span class="glyphicon glyphicon-plus"></span>
+					Add</a>
+			</div>
+		</h2>
+		<table id="grid" class="table table-condensed table-hover table-striped" data-selection="true" data-multi-select="false" data-row-select="true"
+			data-keep-selection="true">
+			<thead>
+				<tr>
+					<th data-column-id="id" data-type="numeric" data-order="asc" data-header-css-class="column" data-align="left" data-width="7%	">Sl.No</th>
+					<th data-column-id="username" data-order="asc" data-align="left" data-header-css-class="column" data-header-align="left" data-width="14%">User Name</th>
+					<th data-column-id="employeeNum" data-type="numeric" data-header-css-class="column" data-align="left" data-width="10%" id="empNum">Employee No</th>
+					<th data-column-id="firstName" data-order="asc" data-align="left" data-header-css-class="column" data-header-align="left" data-width="14%">First Name</th>
+					<th data-column-id="lastName" data-order="asc" data-align="left" data-header-css-class="column" data-header-align="left" data-width="14%">Last Name</th>
+					<th data-column-id="isAdmin" data-order="asc" data-align="left" data-header-css-class="column" data-header-align="left" data-width="14%">Is Admin</th>
+					<th data-column-id="commands" data-formatter="commands" data-header-css-class="column" data-sortable="false" data-width="10%">Commands</th>
+				</tr>
+			</thead>
+			<tbody>
+			</tbody>
+		</table>
+	</div>
+
+	<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+		<div class="modal-dialog" role="document">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+					<h4 class="modal-title" id="myModalLabel">Add New User</h4>
+				</div>
+				<div class="modal-body">
+					<div class="register" id="form">
+						<form id="myForm">
+							<h2>Enter User Details</h2>
+							<label for="empId">Employee Id</label> <input type="text" id="empId" name="empId" placeholder="Enter Employee Id..."></input> <label for="username">User
+								Name</label> <input type="text" id="username" name="username" placeholder="Enter username..."></input> <label for="password">Password</label> <input
+								type="password" id="password" name="password" placeholder="Enter Password..."></input> 
+								<label for="isAdmin">Is Admin</label>
+								 <input type="checkbox"
+								id="isAdmin" name="isAdmin" class="checkbox checkbox-primary" value="0"></input>
+						</form>
+					</div>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+					<button type="button" class="btn btn-success" id="saveUser">Add User</button>
+				</div>
+			</div>
+		</div>
+	</div>
+	<script src="../lib/jquery-ui.js"></script>
+	<script src="../lib/jquery.confirm.min.js"></script>
+	<script src="../lib/jquery.modal.min.js"></script>
+	<script src="../lib/moderniz.2.8.1.js"></script>
+	<script src="../lib/jquery.bootgrid.js"></script>
+	<script src="../lib/jquery.bootgrid.fa.js"></script>
+	<script src="../lib/bootstrap.min.js"></script>
+	<script src="../lib/jquery.validate.min.js"></script>
+	<script src="../js/header.js"></script>
+	<script src="../js/users.js"></script>
 </body>
 </html>

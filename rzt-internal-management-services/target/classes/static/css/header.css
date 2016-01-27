@@ -1,3 +1,6 @@
+.dropdown active{
+	background-color: #c52d2f;
+}
 .navbar-brand {
   padding: 0;
   margin:0;
@@ -30,7 +33,7 @@
 }
 
 .navbar-inverse .navbar-nav > li > a:hover{
-	background-color: #c52d2f;
+	background-color: #c52d2f !important;
   color: #fff;
 }
 
@@ -50,7 +53,7 @@
 .navbar-inverse .navbar-nav > .open > a,
 .navbar-inverse .navbar-nav > .open > a:hover,
 .navbar-inverse .navbar-nav > .open > a:focus {
-  background-color: #c52d2f;
+  background-color: #c52d2f !important;
   color: #fff;
 }
 
@@ -80,7 +83,12 @@
 .navbar-inverse .navbar-nav .dropdown-menu > li:hover > a,
 .navbar-inverse .navbar-nav .dropdown-menu > li:focus > a,
 .navbar-inverse .navbar-nav .dropdown-menu > li.active > a {
-  background-color: #c52d2f;
+  background-color: #c52d2f !important;
+  color: #fff;
+}
+
+.navbar-inverse .navbar-nav .dropdown-menu > li.active .dropdown> a {
+  background-color: #c52d2f !important;
   color: #fff;
 }
 
@@ -96,4 +104,9 @@
 .navbar-inverse .navbar-form {
   border-top: 0;
   padding-bottom: 0;
+}
+
+#header-container
+{
+	margin-right: 3%;
 }
